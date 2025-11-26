@@ -27,21 +27,26 @@ class PokemonDetailViewModel
                 getPokemonUseCase(id).collect { result ->
                     _uiState.update { state ->
                         when (result) {
-                            is Result.Loading ->
+                            is Result.Loading -> {
                                 state.copy(
                                     isLoading = true,
                                 )
-                            is Result.Success ->
+                            }
+
+                            is Result.Success -> {
                                 state.copy(
                                     pokemon = result.data,
                                     isLoading = false,
                                     error = null,
                                 )
-                            is Result.Error ->
+                            }
+
+                            is Result.Error -> {
                                 state.copy(
                                     error = result.exception.message,
                                     isLoading = false,
                                 )
+                            }
                         }
                     }
                 }

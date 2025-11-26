@@ -63,6 +63,7 @@ fun PokemonListContent(
                     }
                 }
             }
+
             error != null && pokemonList.isEmpty() -> {
                 ErrorView(
                     message = error,
@@ -70,6 +71,7 @@ fun PokemonListContent(
                     modifier = Modifier.align(Alignment.Center),
                 )
             }
+
             else -> {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),

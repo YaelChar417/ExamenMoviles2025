@@ -73,6 +73,7 @@ fun PokemonDetailScreen(
                                 .height(200.dp),
                     )
                 }
+
                 uiState.error != null -> {
                     ErrorView(
                         message = uiState.error ?: "Unknown error",
@@ -80,6 +81,7 @@ fun PokemonDetailScreen(
                         modifier = Modifier.align(Alignment.Center),
                     )
                 }
+
                 uiState.pokemon != null -> {
                     PokemonDetailContent(
                         pokemon = uiState.pokemon!!,

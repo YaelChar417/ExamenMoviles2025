@@ -56,7 +56,7 @@ fun HomeScreen(
             }
 
             when (selectedTabIndex) {
-                0 ->
+                0 -> {
                     PokemonListContent(
                         pokemonList = uiState.pokemonList,
                         isLoading = uiState.isLoading,
@@ -64,7 +64,11 @@ fun HomeScreen(
                         onPokemonClick = onPokemonClick,
                         onRetry = { viewModel.loadPokemonList() },
                     )
-                1 -> SearchTab(onPokemonClick = onPokemonClick)
+                }
+
+                1 -> {
+                    SearchTab(onPokemonClick = onPokemonClick)
+                }
             }
         }
     }

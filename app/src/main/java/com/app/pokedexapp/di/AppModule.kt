@@ -40,17 +40,13 @@ object AppModule {
     @Singleton
     fun providePokemonPreferences(
         @ApplicationContext context: Context,
-        gson: Gson
-    ): PokemonPreferences {
-        return PokemonPreferences(context, gson)
-    }
+        gson: Gson,
+    ): PokemonPreferences = PokemonPreferences(context, gson)
 
     @Provides
     @Singleton
     fun providePokemonRepository(
         api: PokemonApi,
-        preferences: PokemonPreferences
-    ): PokemonRepository {
-        return PokemonRepositoryImpl(api, preferences)
-    }
+        preferences: PokemonPreferences,
+    ): PokemonRepository = PokemonRepositoryImpl(api, preferences)
 }

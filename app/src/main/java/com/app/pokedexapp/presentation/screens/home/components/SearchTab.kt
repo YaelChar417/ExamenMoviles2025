@@ -106,6 +106,7 @@ fun SearchTab(
                     }
                 }
             }
+
             filteredPokemon.isEmpty() -> {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -130,6 +131,7 @@ fun SearchTab(
                     }
                 }
             }
+
             else -> { // pokemon found
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
