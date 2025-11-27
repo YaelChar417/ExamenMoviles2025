@@ -28,28 +28,28 @@ fun GameContentScreen(
     onInput: (Int) -> Unit,
     onVerifyClick: () -> Unit,
     onResetClick: () -> Unit,
-    onNewPuzzleClick: () -> Unit
+    onNewPuzzleClick: () -> Unit,
 ) {
     val game = state.game ?: return
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         if (state.message != null) {
             Text(
                 text = state.message,
                 color = if (state.isGameDone) Color(0xFF2E7D32) else Color.Red,
                 style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp),
             )
         }
 
         SudokuBoardScreen(
             game = game,
             selectedCell = selectedCell,
-            onCellClick = onCellClick
+            onCellClick = onCellClick,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -58,8 +58,8 @@ fun GameContentScreen(
             Text(text = "Selecciona un número:")
             Spacer(modifier = Modifier.height(8.dp))
             NumberPad(
-                maxNumber = game.size,
-                onNumberSelected = onInput
+                maxNumber = game.size ?: 4,
+                onNumberSelected = onInput,
             )
         } else if (!state.isGameDone) {
             Text(text = "Toca una celda para editar")
@@ -70,7 +70,7 @@ fun GameContentScreen(
         Row {
             Button(
                 onClick = onVerifyClick,
-                enabled = !state.isGameDone
+                enabled = !state.isGameDone,
             ) {
                 Text(text = "Verificar")
             }

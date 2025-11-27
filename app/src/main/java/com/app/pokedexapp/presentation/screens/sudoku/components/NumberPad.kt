@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun NumberPad(
     maxNumber: Int,
-    onNumberSelected: (Int) -> Unit
+    onNumberSelected: (Int) -> Unit,
 ) {
     val rows = if (maxNumber > 5) 2 else 1
 
@@ -27,7 +27,7 @@ fun NumberPad(
                     Button(
                         onClick = { onNumberSelected(num) },
                         modifier = Modifier.size(50.dp),
-                        contentPadding = PaddingValues(0.dp)
+                        contentPadding = PaddingValues(0.dp),
                     ) {
                         Text(text = num.toString())
                     }

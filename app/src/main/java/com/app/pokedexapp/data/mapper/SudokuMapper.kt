@@ -14,15 +14,15 @@ fun SudokuDto.toDomain(
         val currentCells = mutableListOf<SudokuCell>()
 
         for (column in 0 until size) {
-            val puzzleVal = this.puzzle[row][column]
-            val solutionVal = this.solution[row][column]
-            val isFromApi = (puzzleVal != null)
+            val puzzleVal: Int? = this.puzzle.getOrNull(row)?.getOrNull(column)
+            val solutionVal: Int = this.solution.getOrNull(row)?.getOrNull(column) ?: 0
+            val isFromApi = (puzzleVal != null && puzzleVal != 0)
 
             val cell =
                 SudokuCell(
                     row = row,
                     column = column,
-                    currentVal = puzzleVal,
+                    currentVal = if (puzzleVal == 0) null else puzzleVal,
                     correctVal = solutionVal,
                     isFromApi = isFromApi,
                     isError = false,

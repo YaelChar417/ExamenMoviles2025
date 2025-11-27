@@ -23,50 +23,52 @@ import kotlin.math.sqrt
 fun SudokuBoardScreen(
     game: SudokuGame,
     selectedCell: Pair<Int, Int>?,
-    onCellClick: (Int, Int) -> Unit
+    onCellClick: (Int, Int) -> Unit,
 ) {
     val size = game.size
-    val blockSize = sqrt(size.toDouble()).toInt()
+    val blockSize = sqrt(size!!.toDouble()).toInt()
 
     Column(
-        modifier = Modifier
-            .border(2.dp, Color.Black)
-            .background(Color.Black)
+        modifier =
+            Modifier
+                .border(2.dp, Color.Black)
+                .background(Color.Black),
     ) {
-        for (row in 0 until size) {
+        for (row in 0 until size!!) {
             Row {
-                for (col in 0 until size) {
+                for (col in 0 until size!!) {
                     val cell = game.board[row][col]
 
                     val isRightBlockBorder = (col + 1) % blockSize == 0 && col != size - 1
                     val isBottomBlockBorder = (row + 1) % blockSize == 0 && row != size - 1
 
                     // Determinar color de fondo
-                    val backgroundColor = when {
-                        cell.isError -> Color(0xFFFFCDD2)
-                        selectedCell == (row to col) -> Color(0xFFBBDEFB)
-                        cell.isFromApi -> Color(0xFFE0E0E0)
-                        else -> Color.White
-                    }
+                    val backgroundColor =
+                        when {
+                            cell.isError -> Color(0xFFFFCDD2)
+                            selectedCell == (row to col) -> Color(0xFFBBDEFB)
+                            cell.isFromApi -> Color(0xFFE0E0E0)
+                            else -> Color.White
+                        }
 
                     Box(
-                        modifier = Modifier
-                            .size(if (size == 9) 36.dp else 60.dp)
-                            .background(backgroundColor)
-                            .padding(
-                                end = if (isRightBlockBorder) 2.dp else 1.dp,
-                                bottom = if (isBottomBlockBorder) 2.dp else 1.dp
-                            )
-                            .clickable(enabled = !cell.isFromApi) {
-                                onCellClick(row, col)
-                            },
-                        contentAlignment = Alignment.Center
+                        modifier =
+                            Modifier
+                                .size(if (size == 9) 36.dp else 60.dp)
+                                .background(backgroundColor)
+                                .padding(
+                                    end = if (isRightBlockBorder) 2.dp else 1.dp,
+                                    bottom = if (isBottomBlockBorder) 2.dp else 1.dp,
+                                ).clickable(enabled = !cell.isFromApi) {
+                                    onCellClick(row, col)
+                                },
+                        contentAlignment = Alignment.Center,
                     ) {
                         Text(
                             text = cell.currentVal?.toString() ?: "",
                             fontSize = 18.sp,
                             fontWeight = if (cell.isFromApi) FontWeight.Bold else FontWeight.Normal,
-                            color = if (cell.isFromApi) Color.Black else Color(0xFF1565C0)
+                            color = if (cell.isFromApi) Color.Black else Color(0xFF1565C0),
                         )
                     }
                 }
