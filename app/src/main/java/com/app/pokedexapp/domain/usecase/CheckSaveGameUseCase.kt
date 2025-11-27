@@ -1,23 +1,24 @@
 package com.app.pokedexapp.domain.usecase
 
 import com.app.pokedexapp.domain.common.Result
-import com.app.pokedexapp.domain.model.Pokemon
-import com.app.pokedexapp.domain.repository.PokemonRepository
+import com.app.pokedexapp.domain.repository.SudokuRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetPokemonUseCase
+class CheckSaveGameUseCase
     @Inject
     constructor(
-        private val repository: PokemonRepository,
+        private val repository: SudokuRepository,
     ) {
-        operator fun invoke(id: String): Flow<Result<Pokemon>> =
+        operator fun invoke(): Flow<Result<Boolean>> =
             flow {
                 try {
                     emit(Result.Loading)
-                    val pokemon = repository.getPokemonById(id)
-                    emit(Result.Success(pokemon))
+
+                    val hasGame = repository.hasSavedGame()
+
+                    emit(Result.Success(hasGame))
                 } catch (e: Exception) {
                     emit(Result.Error(e))
                 }
