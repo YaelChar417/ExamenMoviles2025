@@ -18,14 +18,15 @@ fun SudokuDto.toDomain(
             val solutionVal = this.solution[row][column]
             val isFromApi = (puzzleVal != null)
 
-            val cell = SudokuCell(
-                row = row,
-                column = column,
-                currentVal = puzzleVal,
-                correctVal = solutionVal,
-                isFromApi = isFromApi,
-                isError = false
-            )
+            val cell =
+                SudokuCell(
+                    row = row,
+                    column = column,
+                    currentVal = puzzleVal,
+                    correctVal = solutionVal,
+                    isFromApi = isFromApi,
+                    isError = false,
+                )
 
             currentCells.add(cell)
         }
