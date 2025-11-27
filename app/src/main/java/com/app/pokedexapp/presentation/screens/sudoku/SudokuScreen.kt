@@ -84,7 +84,6 @@ fun SudokuScreen(viewModel: SudokuViewModel = hiltViewModel()) {
                     onInput = { num ->
                         selectedCell?.let { (row, column) ->
                             viewModel.onCellInput(row, column, num)
-                            selectedCell = null
                         }
                     },
                     onVerifyClick = { viewModel.verifySolution() },
