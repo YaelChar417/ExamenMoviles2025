@@ -9,10 +9,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,7 +40,7 @@ fun SudokuScreen(viewModel: SudokuViewModel = hiltViewModel()) {
                 actions = {
                     // Si hay un juego activo, mostramos botón menú
                     if (uiState.game != null) {
-                        IconButton(onClick = { viewModel.returnToMenu() }) {
+                        TextButton(onClick = { viewModel.returnToMenu() }) {
                             Text("Menu", color = MaterialTheme.colorScheme.primary)
                         }
                     }
